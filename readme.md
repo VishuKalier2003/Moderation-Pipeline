@@ -1,7 +1,7 @@
 # ***Project Documentary & Design Analysis***
-## ***Moderation Pipeline***
+## ${\color{lightgreen} Moderation Pipeline}$
 
-## Project Structure Overview
+## ***Project Structure Overview***
 
 This Java Spring Boot project, "Moderation Pipeline," is architected to provide a modular, extensible, and robust system for content moderation. The codebase is organized into clear domain-driven packages, each serving a distinct responsibility. The `src/main/java` directory contains the core logic, divided into sub folders such as `controller`, `service`, `model`, `factory`, `repository`, and `utils`. The `model` package is further split into `base`, `composite`, `domain`, and `storage`, reflecting a layered approach to domain modeling.
 
