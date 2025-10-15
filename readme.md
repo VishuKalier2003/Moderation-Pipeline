@@ -1,5 +1,5 @@
-# ***Project Documentary & Design Analysis***
-## ${\color{lightgreen} Moderation Pipeline}$
+# ${\color{lightblue} Project \space Documentary \space and \space Design \space Analysis}$
+## ${\color{lightgreen} Moderation \space Pipeline}$
 
 ## ***Project Structure Overview***
 
