@@ -1,8 +1,9 @@
-# Project Documentary & Design Analysis: Moderation Pipeline
+# ${\color{lightblue} Project \space Documentary \space & \space Design \space Analysis}$
+## ${\color{lightgreen}Moderation \space Pipeline}$
 
 ## Project Structure Overview
 
-This Java Spring Boot project, "Moderation Pipeline," is architected to provide a modular, extensible, and robust system for content moderation. The codebase is organized into clear domain-driven packages, each serving a distinct responsibility. The `src/main/java` directory contains the core logic, divided into subfolders such as `controller`, `service`, `model`, `factory`, `repository`, and `utils`. The `model` package is further split into `base`, `composite`, `domain`, and `storage`, reflecting a layered approach to domain modeling.
+This Java Spring Boot project, "Moderation Pipeline," is architected to provide a modular, extensible, and robust system for content moderation. The codebase is organized into clear domain-driven packages, each serving a distinct responsibility. The `src/main/java` directory contains the core logic, divided into sub folders such as `controller`, `service`, `model`, `factory`, `repository`, and `utils`. The `model` package is further split into `base`, `composite`, `domain`, and `storage`, reflecting a layered approach to domain modeling.
 
 At the heart of the system is the concept of "Moderators," each encapsulating a specific moderation logic (e.g., password, data, word, style). These are implemented as Spring beans with prototype scope, allowing dynamic instantiation and chaining. The `ModerationFactory` leverages Spring's `ObjectProvider` to create moderator instances on demand, supporting a flexible pipeline construction. The pipeline itself is managed by `NodeManager` and `NodePipeline`, which use a linked-node structure to process input data through a sequence of moderation steps.
 
@@ -12,29 +13,29 @@ The project demonstrates a hybrid design, blending object-oriented principles, l
 
 ---
 
-## Design Patterns Analysis
+## ***Design Patterns Analysis***
 
-### Factory Pattern
+### *Factory Pattern*
 
 The `ModerationFactory` is a textbook implementation of the Factory pattern, abstracting the instantiation logic for various moderator types. By using Spring's `ObjectProvider`, it ensures that dependencies are injected and lifecycle managed, while allowing for prototype-scoped beans. This pattern decouples the creation logic from usage, enabling dynamic pipeline assembly and easy extension for new moderator types. The factory's map-based provider registry allows for O(1) lookup and instantiation, making the system both efficient and scalable.
 
-### Decorator & Composite Patterns
+### *Decorator & Composite Patterns*
 
 Moderators such as `DataModerator`, `PasswordModerator`, and `WordModerator` are designed to wrap or compose other moderators, effectively implementing a decorator or composite pattern. This allows for layered moderation logic, where each step can augment or short-circuit the process. The use of parent references and chaining methods (`produce()`) enables flexible pipeline construction, supporting both linear and hierarchical moderation flows. This design promotes reusability and separation of concerns, as each moderator focuses on a specific aspect of validation.
 
-### Pipeline Pattern
+### *Pipeline Pattern*
 
 The core moderation flow is orchestrated using a pipeline pattern, with `NodeManager` and `NodePipeline` managing a linked list of `Node` objects. Each node encapsulates a moderator and delegates moderation logic, passing the output to the next node. This structure supports both synchronous and asynchronous execution, leveraging Java's concurrency utilities. The pipeline can be dynamically built and modified via API endpoints, providing runtime flexibility and extensibility.
 
-### Dependency Injection & Inversion of Control
+### *Dependency Injection & Inversion of Control*
 
-Spring's dependency injection is leveraged throughout the project, ensuring loose coupling and testability. Moderators, factories, services, and repositories are all managed as beans, with dependencies injected via `@Autowired` and constructor injection. This design adheres to the inversion of control principle, allowing the framework to manage object lifecycles and dependencies, reducing boilerplate and improving maintainability.
+Spring's dependency injection is leveraged throughout the project, ensuring loose coupling and testability. Moderators, factories, services, and repositories are all managed as beans, with dependencies injected via `@Autowired` and constructor injection. This design adheres to the inversion of control principle, allowing the framework to manage object life cycles and dependencies, reducing boilerplate and improving maintainability.
 
 ---
 
-## Design Terminologies
+## ***Design Terminologies***
 
-### Object-Oriented Programming (OOPs)
+### *Object-Oriented Programming (OOPs)*
 
 The project exemplifies OOP principles through its use of encapsulation, inheritance, and polymorphism. Each moderator is a distinct class, encapsulating its logic and state. The use of interfaces (`Moderation`, `Production`) promotes polymorphism, allowing different moderator types to be treated uniformly. Inheritance is used judiciously, with `BaseModerator` serving as a common ancestor for specialized moderators. The design encourages composition over inheritance, with composite moderators wrapping base instances.
 
@@ -57,7 +58,7 @@ The project exemplifies OOP principles through its use of encapsulation, inherit
 
 ---
 
-### Low-Level Design (LLD)
+### ***Low-Level Design (LLD)***
 
 LLD is evident in the detailed class structures, method signatures, and interaction patterns. The use of DTOs, service classes, and utility components reflects careful attention to implementation details. The pipeline and node management logic is robust, with atomic references ensuring thread safety. The use of prototype scope for moderators allows for dynamic instantiation, supporting complex pipeline configurations.
 
@@ -80,9 +81,9 @@ LLD is evident in the detailed class structures, method signatures, and interact
 
 ---
 
-### Domain-Driven Design (DDD)
+### ***Domain-Driven Design (DDD)***
 
-The project adopts DDD principles by modeling core concepts as domain entities (`User`, `ModerationOutput`), value objects, and repositories. The `model` package is organized into domain, base, composite, and storage subpackages, reflecting bounded contexts. The use of interfaces and factories aligns with DDD's emphasis on abstraction and domain logic encapsulation. The pipeline itself is a domain service, orchestrating moderation steps as business processes.
+The project adopts DDD principles by modeling core concepts as domain entities (`User`, `ModerationOutput`), value objects, and repositories. The `model` package is organized into domain, base, composite, and storage sub packages, reflecting bounded contexts. The use of interfaces and factories aligns with DDD's emphasis on abstraction and domain logic encapsulation. The pipeline itself is a domain service, orchestrating moderation steps as business processes.
 
 **Unique & Powerful Aspects:**
 - Clear domain modeling with entities and value objects.
@@ -103,7 +104,7 @@ The project adopts DDD principles by modeling core concepts as domain entities (
 
 ---
 
-### Software Design (SD)
+### ***Software Design (SD)***
 
 The software design is hybrid, blending OOP, LLD, and DDD with modern Spring Boot practices. The use of RESTful APIs, DTOs, and service layers ensures clean separation between presentation and business logic. The pipeline pattern provides runtime flexibility, allowing dynamic reconfiguration. The design is highly modular, with each component serving a distinct responsibility. Concurrency is handled via thread pools and atomic references, supporting scalable and responsive moderation flows.
 
@@ -127,7 +128,7 @@ The software design is hybrid, blending OOP, LLD, and DDD with modern Spring Boo
 
 ---
 
-### High-Level Design (HLD)
+### ***High-Level Design (HLD)***
 
 At a high level, the project is designed as a service-oriented, domain-driven moderation engine. The use of Spring Boot enables rapid development and integration with modern infrastructure. The pipeline architecture supports both batch and real-time moderation, with RESTful endpoints for management and execution. The design is cloud-ready, with stateless services and scalable components. The use of prototype beans and factories allows for horizontal scaling and dynamic configuration.
 
@@ -151,7 +152,7 @@ At a high level, the project is designed as a service-oriented, domain-driven mo
 
 ---
 
-## Final Project Score & Summary Table
+## ***Final Project Score & Summary Table***
 
 | Aspect         | Score | Weak Spots         | Strong Points         | Reasoning                                      |
 |----------------|-------|--------------------|-----------------------|------------------------------------------------|
@@ -165,7 +166,7 @@ At a high level, the project is designed as a service-oriented, domain-driven mo
 
 ---
 
-## Use Cases & Unique Ideas
+## ***Use Cases & Unique Ideas***
 
 - **Dynamic Moderation Pipeline:** Users can build and modify moderation pipelines at runtime via REST APIs, enabling flexible content validation workflows.
 - **Extensible Moderator Types:** New moderation logic can be added easily by implementing new moderator classes and registering them with the factory.
@@ -175,7 +176,7 @@ At a high level, the project is designed as a service-oriented, domain-driven mo
 
 ---
 
-## Conclusion
+## ***Conclusion***
 
 This project stands out as a sophisticated, hybrid design that leverages modern Java and Spring Boot capabilities. It demonstrates advanced design patterns, domain-driven modeling, and runtime flexibility, making it an excellent showcase for a final-year student or fresher. The modularity, extensibility, and concurrency support are particularly impressive, enabling real-world scalability and maintainability. While minor improvements could be made in error handling, state management, and abstraction, the overall architecture is robust and well-suited for production use. The project scores highly across all design dimensions, reflecting thoughtful engineering and a deep understanding of software design principles.
 
